@@ -5,12 +5,12 @@
             <div id="order" class=" md:min-h-fit min-h-[60vh] flex justify-between items-start mb-4 py-4 px-8">
 
                 <div class="flex items-center px-20 relative">
-                    <img src="@/assets/images/misc/RotiTawar.jpg" alt="Gambar Utama"
+                    <img src="{{ asset('../../images/RotiAnggur.jpg') }}" alt="Gambar Utama"
                         class="w-[300px] h-[300px] object-cover shadow-lg">
 
                     <div
                         class="w-[280px] py[-125px] p-4 flex flex-col gap-4 absolute right-[-80px] bottom-0 rounded-lg ">
-                        <img src="@/assets/images/misc/RotiTawar.jpg" alt="Gambar Tumpukan" class="object-cover ">
+                        <img src="{{ asset('../../images/RotiAnggur.jpg') }}" alt="Gambar Tumpukan" class="object-cover ">
                     </div>
                 </div>
 

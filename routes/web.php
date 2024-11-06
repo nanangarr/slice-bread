@@ -8,8 +8,8 @@ Route::get('/', function () {
 Route::get('/menu', function () {
     return view('menu.menu');
 });
-Route::get('/deskripsi', function () {
-    return view('menu.deskripsi');
+Route::get('/total', function () {
+    return view('menu.total');
 });
 Route::get('/total', function () {
     return view('menu.total');
@@ -31,6 +31,9 @@ Route::get('/reset', function () {
 });
 Route::get('/register', function () {
     return view('auth.register');
+});
+Route::get('/deskripsi', function () {
+    return view('menu.deskripsi');
 });
 
 

@@ -48,7 +48,7 @@
         <a href="/deskripsi" id="Menu" class="px-8 flex-1">
             <div class="grid grid-cols-4 gap-6">
                 <div class="menu-item">
-                    <img src="@/assets/images/misc/RotiAnggur.jpg" class="w-full h-48 object-cover" />
+                    <img src="{{ asset('../../images/RotiAnggur.jpg') }}" class="w-full h-48 object-cover" />
                     <h3 class="font-semibold">Roti Anggur</h3>
                     <p class="text-yellow-500">Rp 5.000</p>
                 </div>

@@ -60,26 +60,26 @@
                 </button>
                 <ul class="mt-8 space-y-6">
                     <li class="flex items-center justify-between">
-                        <img src="https://via.placeholder.com/50" alt="Product Image"
+                        <img src="{{ asset('../../images/RotiAnggur.jpg') }}" alt="Product Image"
                             class="w-16 h-16 object-cover rounded mr-4">
                         <div class="flex-1">
-                            <p class="font-medium">Throwback Hip Bag</p>
-                            <p class="text-gray-500">$90.00</p>
+                            <p class="font-medium">Roti Anggur</p>
+                            <p class="text-gray-500">Rp5.000</p>
                         </div>
                         <button class="text-red-500 hover:text-red-700">Remove</button>
                     </li>
                     <li class="flex items-center justify-between">
-                        <img src="https://via.placeholder.com/50" alt="Product Image"
+                        <img src="{{ asset('../../images/RotiAbon.jpg') }}" alt="Product Image"
                             class="w-16 h-16 object-cover rounded mr-4">
                         <div class="flex-1">
-                            <p class="font-medium">Classic Tote Bag</p>
-                            <p class="text-gray-500">$60.00</p>
+                            <p class="font-medium">Roti Abon</p>
+                            <p class="text-gray-500">Rp10.000</p>
                         </div>
                         <button class="text-red-500 hover:text-red-700">Remove</button>
                     </li>
                 </ul>
                 <div class="mt-8">
-                    <p class="text-base font-medium">Subtotal: $150.00</p>
+                    <p class="text-base font-medium">Subtotal: Rp15.000</p>
                     <button
                         class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Checkout</button>
                 </div>

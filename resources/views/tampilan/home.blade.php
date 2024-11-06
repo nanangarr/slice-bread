@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="mt-6 md:mt-0 md:ml-6">
-                <img src="@/assets/images/misc/Gambar.png" class="aspect-[1.2] mt-5 object-contain" />
+                <img src="{{ asset('../../images/Gambar.png') }}" class="aspect-[1.2] mt-5 object-contain" />
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
                 <div class="p-4">
                     <div class="w-28 h-28 bg-[#794400] rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <img src="@/assets/images/misc/abon.png" alt="Donat" class="w-16 h-16 object-cover rounded-">
+                        <img src="{{ asset('../../images/Abon.png') }}" alt="Donat" class="w-16 h-16 object-cover rounded-">
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-2">Roti Abon</h3>
                     <p class="text-gray-600 text-center">(86 dishes)</p>
@@ -104,7 +104,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
                 <div class="p-4">
                     <div class="w-28 h-28 bg-[#794400] rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <img src="@/assets/images/misc/vanila.png" alt="Donat" class="w-16 h-16 object-cover">
+                        <img src="{{ asset('../../images/vanila.png') }}" alt="Donat" class="w-16 h-16 object-cover">
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-2">Roti Vanila</h3>
                     <p class="text-gray-600 text-center">(86 dishes)</p>
@@ -116,7 +116,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
                 <div class="p-4">
                     <div class="w-28 h-28 bg-[#794400] rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <img src="@/assets/images/misc/anggur.png" alt="Donat" class="w-16 h-16 object-cover">
+                        <img src="{{ asset('../../images/anggur.png') }}" alt="Donat" class="w-16 h-16 object-cover">
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-2">Roti Anggur</h3>
                     <p class="text-gray-600 text-center">(86 dishes)</p>
@@ -128,7 +128,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
                 <div class="p-4">
                     <div class="w-28 h-28 bg-[#794400] rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <img src="@/assets/images/misc/anggur.png" alt="Donat" class="w-16 h-16 object-cover">
+                        <img src="{{ asset('../../images/abon.png') }}" alt="Donat" class="w-16 h-16 object-cover">
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-2">Roti Anggur</h3>
                     <p class="text-gray-600 text-center">(86 dishes)</p>
@@ -140,7 +140,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
                 <div class="p-4">
                     <div class="w-28 h-28 bg-[#794400] rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <img src="@/assets/images/misc/anggur.png" alt="Donat" class="w-16 h-16 object-cover">
+                        <img src="{{ asset('../../images/vanila.png') }}" alt="Donat" class="w-16 h-16 object-cover">
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-2">Roti Anggur</h3>
                     <p class="text-gray-600 text-center">(86 dishes)</p>
@@ -161,11 +161,11 @@
     <div id="order" class=" md:min-h-fit min-h-[60vh] flex justify-between items-start mb-4 py-4 px-8">
 
         <div class="flex items-center px-20 relative">
-            <img src="@/assets/images/misc/RotiTawar.jpg" alt="Gambar Utama"
+            <img src="{{ asset('../../images/RotiTawar.jpg') }}" alt="Gambar Utama"
                 class="w-[300px] h-[300px] object-cover shadow-lg">
 
             <div class="w-[280px] py[-125px] p-4 flex flex-col gap-4 absolute right-[-80px] bottom-0 rounded-lg ">
-                <img src="@/assets/images/misc/RotiTawar.jpg" alt="Gambar Tumpukan" class="object-cover ">
+                <img src="{{ asset('../../images/RotiAnggur.jpg') }}" alt="Gambar Tumpukan" class="object-cover ">
             </div>
         </div>
 
