@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
+    <title>Slice Bread Bakery</title>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -25,9 +25,9 @@
         <!-- Navigation Section - Pushed to right -->
         <nav class="flex items-center space-x-8 px-20">
             <div class="flex items-center space-x-6">
-                <a href="/menu" class="hover:text-[#faa005]">Menu</a>
-                <a href="/cara" class="hover:text-[#faa005]">Cara Order</a>
-                <a href="/kontak" class="hover:text-[#faa005]">Kontak</a>
+                <a href="/menu" class="hover:text-[#faa005] {{ request()->is('menu*') ? 'text-[#faa005] font-bold' : '' }}">Menu</a>
+                <a href="/cara" class="hover:text-[#faa005] {{ request()->is('cara*') ? 'text-[#faa005] font-bold' : '' }}">Cara Order</a>
+                <a href="/kontak" class="hover:text-[#faa005] {{ request()->is('kontak*') ? 'text-[#faa005] font-bold' : '' }}">Kontak</a>
             </div>
 
             <label for="cartToggle" class="cursor-pointer mt-2">
