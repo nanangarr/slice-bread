@@ -168,11 +168,9 @@
                         <dd class="text-base font-bold text-gray-900 dark:text-white">Rp250.000</dd>
                     </dl>
 
-                    <a href="/rekap">
-                        <button type="button"
-                            class="w-full h-14 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 focus:outline-none mt-4">
-                            Konfirmasi Pesanan
-                        </button>
+                    <a href="/rekap"
+                        class="w-full h-14 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 focus:outline-none mt-4 flex items-center justify-center">
+                        Konfirmasi Pesanan
                     </a>
                 </div>
             </div>

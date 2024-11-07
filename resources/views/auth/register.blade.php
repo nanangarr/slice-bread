@@ -1,142 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html :class="" x-data="data()" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Slice Bread Bakery</title>
+    <link rel="stylesheet" href="{{ asset('css/output.css') }}">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="../../js/init-alpine.js"></script>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <div class="font-[sans-serif] bg-white flex items-center md:h-screen p-4">
-        <div class="w-full max-w-5xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 bg-gray-50 shadow w-full sm:p-8 p-6 rounded-xl relative">
-                <div>
-                    <div class="mb-16">
-                        <a href="javascript:void(0)"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
-                                class='w-40 inline-block' />
-                        </a>
-                    </div>
+    <div class="flex items-center justify-center min-h-screen gap-10 bg-gray-50 dark:bg-gray-900">
+        <div class="font-bold justify-start">
+            <span class="text-orange-500 text-8xl">S</span><span class="text-gray-800 text-6xl">lice</span><span
+                class="text-orange-500 text-8xl">B</span><span class="text-gray-800 text-6xl">akery</span>
+        </div>
 
-                    <div class="space-y-8">
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="w-5 h-5 bg-blue-600 fill-white rounded-full p-1 shrink-0" viewBox="0 0 24 24">
-                                <path
-                                    d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                                    data-original="#000000"></path>
-                            </svg>
-                            <h4 class="text-gray-800 text-base font-semibold">Create Your Account</h4>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="w-5 h-5 bg-blue-600 fill-white rounded-full p-1 shrink-0" viewBox="0 0 24 24">
-                                <path
-                                    d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                                    data-original="#000000"></path>
-                            </svg>
-                            <h4 class="text-gray-800 text-base font-semibold">Simple & Secure Registration</h4>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="w-5 h-5 bg-blue-600 fill-white rounded-full p-1 shrink-0" viewBox="0 0 24 24">
-                                <path
-                                    d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                                    data-original="#000000"></path>
-                            </svg>
-                            <h4 class="text-gray-800 text-base font-semibold">Terms and Conditions Agreement</h4>
-                        </div>
+        <div
+            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8 ">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Silahkan Membuat Akun Anda
+                </h1>
+                <form class="space-y-4 md:space-y-6" action="#">
+                    <div>
+                        <label for="nama"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukkan Nama</label>
+                        <input type="nama" name="nama" id="nama"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="name@company.com" required="">
                     </div>
-                </div>
-
-                <form class="md:max-w-sm w-full mx-auto">
-                    <div class="mb-8">
-                        <h3 class="text-gray-800 text-2xl font-extrabold">Register</h3>
+                    <div>
+                        <label for="email"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukkan Email</label>
+                        <input type="email" name="email" id="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="name@company.com" required="">
                     </div>
-
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-gray-800 text-sm mb-2 block">Name</label>
-                            <div class="relative flex items-center">
-                                <input name="name" type="text" required
-                                    class="bg-transparent border border-gray-400 w-full text-gray-800 text-sm pl-4 pr-10 py-3 rounded-xl outline-blue-600"
-                                    placeholder="Enter name" />
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                                    class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
-                                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                                    <path
-                                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                                        data-original="#000000"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-gray-800 text-sm mb-2 block">Email Id</label>
-                            <div class="relative flex items-center">
-                                <input name="email" type="email" required
-                                    class="bg-transparent border border-gray-400 w-full text-gray-800 text-sm pl-4 pr-10 py-3 rounded-xl outline-blue-600"
-                                    placeholder="Enter email" />
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                                    class="w-4 h-4 absolute right-4" viewBox="0 0 682.667 682.667">
-                                    <defs>
-                                        <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                                            <path d="M0 512h512V0H0Z" data-original="#000000"></path>
-                                        </clipPath>
-                                    </defs>
-                                    <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
-                                        <path fill="none" stroke-miterlimit="10" stroke-width="40"
-                                            d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                                            data-original="#000000"></path>
-                                        <path
-                                            d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                                            data-original="#000000"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-gray-800 text-sm mb-2 block">Password</label>
-                            <div class="relative flex items-center">
-                                <input name="password" type="password" required
-                                    class="bg-transparent border border-gray-400 w-full text-gray-800 text-sm pl-4 pr-10 py-3 rounded-xl outline-blue-600"
-                                    placeholder="Enter password" />
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                                    class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
-                                    <path
-                                        d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
-                                        data-original="#000000"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="remember-me" name="remember-me" type="checkbox"
-                                class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
-                            <label for="remember-me" class="ml-3 block text-sm text-gray-800">
-                                I accept the <a href="javascript:void(0);"
-                                    class="text-blue-600 font-semibold hover:underline ml-1">Terms and
-                                    Conditions</a>
-                            </label>
-                        </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kata
+                            Sandi</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring--600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required="">
                     </div>
-
-                    <div class="mt-12">
-                        <a href="/login">
-                        <button type="button"
-                            class="w-full py-3 px-6 text-sm tracking-wide font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white focus:outline-none">
-                            Create Account
-                        </button>
-                        </a>
+                    <div>
+                        <label for="confirm-password"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tulis Ulang Kata
+                            Sandi</label>
+                        <input type="confirm-password" name="confirm-password" id="confirm-password"
+                            placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required="">
                     </div>
-
-                    <p class="text-sm text-gray-800 mt-6 text-center">Already have an account? <a href="javascript:void(0);"
-                            class="text-blue-600 font-semibold hover:underline ml-1">Login here</a></p>
+                    <button type="submit"
+                        class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buat
+                        Akun</button>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Sudah punya akun? <a href="/login"
+                            class="font-medium text-blue-600 hover:underline dark:text-blue-500">Login disini</a>
+                    </p>
                 </form>
-                <div class="divider absolute left-0 right-0 mx-auto w-1 h-full border-l border-gray-400 max-md:hidden">
-                </div>
             </div>
         </div>
     </div>
 </body>
+
+</html>

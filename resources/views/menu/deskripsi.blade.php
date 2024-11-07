@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-    <div class="flex p-20 ">
+    <div class="flex px-20 py-6 ">
         <div class="flex w-[438px] h-[376px] border-2 border-x-mediumgrey border-opacity-50">
             <img src="{{ asset('../../images/RotiAnggur.jpg') }}" alt="" class="object-cover aspect-[1.3]">
         </div>

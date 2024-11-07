@@ -8,14 +8,14 @@ Route::get('/', function () {
 Route::get('/menu', function () {
     return view('menu.menu');
 });
-Route::get('/total', function () {
-    return view('menu.total');
+Route::get('/isidata', function () {
+    return view('menu.isiData');
 });
 Route::get('/total', function () {
-    return view('menu.total');
+    return view('menu.totalSementara');
 });
 Route::get('/rekap', function () {
-    return view('menu.rekap');
+    return view('menu.rekapSemua');
 });
 Route::get('/cara', function () {
     return view('tampilan.cara');

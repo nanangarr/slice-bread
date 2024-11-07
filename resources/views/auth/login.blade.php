@@ -1,98 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html :class="" x-data="data()" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Slice Bread Bakery</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    <div class="font-[sans-serif] max-w-7xl mx-auto h-screen px-20 p-6">
-        <div class="grid md:grid-cols-2 items-center gap-8 h-full">
-            <form class="max-w-lg max-md:mx-auto w-full">
-                <div class="mb-12">
-                    <h3 class="text-gray-800 text-4xl font-extrabold">Sign in</h3>
-                    <p class="text-gray-800 text-sm mt-6">Immerse yourself in a hassle-free login journey with our
-                        intuitively designed login form. Effortlessly access your account.</p>
-                </div>
+<body class="">
+    <div class="flex items-center  justify-center min-h-screen gap-10 bg-gray-50 dark:bg-gray-900">
+        <div class="font-bold justify-start">
+            <span class="text-orange-500 text-8xl">S</span><span class="text-gray-800 text-6xl">lice</span><span
+                class="text-orange-500 text-8xl">B</span><span class="text-gray-800 text-6xl">akery</span>
+        </div>
 
-                <div>
-                    <label class="text-gray-800 text-[15px] mb-2 block">Email</label>
-                    <div class="relative flex items-center">
-                        <input name="email" type="text" required
-                            class="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
-                            placeholder="Enter email" />
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                            class="w-[18px] h-[18px] absolute right-4" viewBox="0 0 682.667 682.667">
-                            <defs>
-                                <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                                    <path d="M0 512h512V0H0Z" data-original="#000000"></path>
-                                </clipPath>
-                            </defs>
-                            <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
-                                <path fill="none" stroke-miterlimit="10" stroke-width="40"
-                                    d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                                    data-original="#000000"></path>
-                                <path
-                                    d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                                    data-original="#000000"></path>
-                            </g>
-                        </svg>
+        <div
+            class="w-full bg-white rounded-lg shadow border dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Silahkan Login Terlebih Dahulu
+                </h1>
+                <form class="space-y-4 md:space-y-6" action="#">
+                    <div>
+                        <label for="email"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukkan Email</label>
+                        <input type="email" name="email" id="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="name@company.com">
                     </div>
-                </div>
-
-                <div class="mt-4">
-                    <label class="text-gray-800 text-[15px] mb-2 block">Password</label>
-                    <div class="relative flex items-center">
-                        <input name="password" type="password" required
-                            class="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
-                            placeholder="Enter password" />
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                            class="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 128 128">
-                            <path
-                                d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
-                                data-original="#000000"></path>
-                        </svg>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kata
+                            Sandi</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-4 justify-between mt-4">
-                    <div class="flex items-center">
-                        <input id="remember-me" name="remember-me" type="checkbox"
-                            class="shrink-0 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-md" />
-                        <label for="remember-me" class="ml-3 block text-sm text-gray-800">
-                            Remember me
-                        </label>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="remember" aria-describedby="remember" type="checkbox"
+                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+                            </div>
+                        </div>
+                        <a href="/reset"
+                            class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Lupa Kata
+                            Sandi?</a>
                     </div>
-                    <div class="text-sm">
-                        <a href="/reset" class="text-blue-600 font-semibold hover:underline">
-                            Forgot your password?
-                        </a>
-                    </div>
-                </div>
 
-                <div class="mt-8">
-                    <a href="/">
-                        <button type="button"
-                            class="w-full shadow-xl py-3 px-6 text-sm tracking-wide font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
-                            Log in
-                        </button>
-                    </a>
-
-                </div>
-                <p class="text-sm mt-8 text-center text-gray-800">Don't have an account? <a href="/register"
-                        class="text-blue-600 font-semibold tracking-wide hover:underline ml-1">Register here</a></p>
-            </form>
-
-            <div
-                class="h-full md:py-6 flex items-center relative max-md:before:hidden before:absolute before:bg-gradient-to-r before:from-gray-50 before:via-[#E4FE66] before:to-[#55F5A3] before:h-full before:w-3/4 before:right-0 before:z-0">
-                <img src="https://readymadeui.com/photo.webp" class="rounded-md lg:w-4/5 md:w-11/12 z-50 relative"
-                    alt="Dining Experience" />
+                    <button type="submit"
+                        class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Tidak punya akun??
+                        <a href="/register" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Buat
+                            Akun</a>
+                    </p>
+                </form>
             </div>
         </div>
     </div>
 </body>
+
+</html>
