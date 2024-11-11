@@ -1,13 +1,23 @@
 <?php
-
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdukController;
+
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'process'])->middleware('web');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::get('/reset', [AuthController::class, 'reset']);
+
+
 
 Route::get('/', function () {
     return view('tampilan.home');
 });
-Route::get('/menu', function () {
-    return view('menu.menu');
-});
+
+Route::resource('/menu', ProdukController::class);
+/*
 Route::get('/isidata', function () {
     return view('menu.isiData');
 });
@@ -34,4 +44,4 @@ Route::get('/register', function () {
 });
 Route::get('/deskripsi', function () {
     return view('menu.deskripsi');
-});
+    */

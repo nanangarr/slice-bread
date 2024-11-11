@@ -10,6 +10,7 @@
 </head>
 
 <body class="h-screen overflow-hidden bg-[#FBF6EA]">
+    @include('sweetalert::alert')
     <div class="flex items-center justify-center h-full">
         <div class="grid grid-cols-2 p-16 max-w-6xl w-full items-center">
             <div class="p-16 ">
@@ -18,18 +19,18 @@
                 </h1>
             </div>
             <div>
-                <div class="border bg-white p-8 space-y-3">
+                <form class="border bg-white p-8 space-y-3 needs-validation" novalidate action="/login" method="POST">
                     <h3 class="text-3xl font-bold">Halaman Login</h3>
                     <div class="relative">
                         <img src="{{ asset('../../images/email.png') }}"
                             class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                        <input type="email" class="shadow border border-x-darkgrey py-3 pl-12 pr-3 w-full"
+                        <input type="email" name="email" id="email" class="shadow border border-x-darkgrey py-3 pl-12 pr-3 w-full"
                             placeholder="Email" />
                     </div>
                     <div class="relative">
                         <img src="{{ asset('../../images/Lock.png') }}"
                             class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                        <input type="password" class="shadow border border-x-darkgrey py-3 pl-12 pr-3 w-full"
+                        <input type="password" name="password" id="password" class="shadow border border-x-darkgrey py-3 pl-12 pr-3 w-full"
                             placeholder="Password" />
                     </div>
                     <div class="flex space-x-3">
@@ -37,8 +38,8 @@
                         <h5 class="text-sm">Ingatkan Saya?</h5>
                     </div>
                     <div>
-                        <a href="/">
-                            <button type="button"
+                        <a>
+                            <button type="submit"
                                 class="w-full bg-[#FF9F0D] transition font-semibold py-3 mb-2">Login</button>
                         </a>
                     </div>
@@ -56,28 +57,30 @@
                                 Kata Sandi</a>
                         </div>
                     </div>
-                    <div>
-                        <a href="/">
-                            <button type="button" class="w-full border border-black py-3 mb-3 relative">Sign Up With
-                                Google
-                                <img src="{{ asset('../../images/Google.png') }}"
-                                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                            </button>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="/">
-                            <button type="button" class="w-full border border-black py-3 mb-3 relative">Sign Up With
-                                Apple
-                                <img src="{{ asset('../../images/Apple.png') }}"
-                                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                            </button>
-                        </a>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </body>
+
 
 </html>
