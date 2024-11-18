@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
+    <title>Slice Bread Bakery</title>
     <link rel="stylesheet" href="{{ asset('css/output.css') }}">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="../../js/init-alpine.js"></script>
@@ -13,44 +13,33 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="h-screen overflow-hidden bg-[#FBF6EA]">
-    <div class="flex items-center justify-center h-full">
-        <div class=" p-16 bg-[#FBF6EA] place-items-center">
-            <div class=" p-8 ">
-                <h1 class="text-6xl font-bold text-center"><span class="text-[#FF9F0D]">S</span>lice <span
-                        class="text-[#FF9F0D]">B</span>akery</h1>
-            </div>
-            <div>
-                <div class="border rounded-lg bg-white p-8 space-y-3">
-                    <h3 class="text-3xl font-bold"> Buat Kata Sandi Baru</h3>
-                    <div class="relative">
-                        <img src="{{ asset('../../images/email.png') }}"
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                        <input type="Email" class="shadow rounded-lg border border-x-darkgrey py-3 pl-12 pr-3 w-full "
-                            placeholder="Email" />
-                    </div>
-                    <div class="relative">
-                        <img src="{{ asset('../../images/Lock.png') }}"
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                        <input type="Password"
-                            class="shadow border rounded-lg border-x-darkgrey py-3 pl-12 pr-3 w-full "
-                            placeholder="Password Baru" />
-                    </div>
-                    <div class="relative">
-                        <img src="{{ asset('../../images/Lock.png') }}"
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
-                        <input type="Password"
-                            class="shadow border rounded-lg border-x-darkgrey py-3 pl-12 pr-3 w-full "
-                            placeholder="Ulangi Password" />
-                    </div>
-                    <a href="/login">
-                        <button class="w-full bg-[#FF9F0D] transision rounded-lg font-semibold py-3 mt-4 mb-10">
-                            Buat Baru
-                        </button>
-                    </a>
-                </div>
-            </div>
+<body class="">
+    <div class="flex items-center  justify-center min-h-screen gap-10 bg-gray-50 dark:bg-gray-900">
+        <div class="font-bold justify-start">
+            <span class="text-orange-500 text-8xl">S</span><span class="text-gray-800 text-6xl">lice</span><span class="text-orange-500 text-8xl">B</span><span class="text-gray-800 text-6xl">akery</span>
         </div>
+
+        <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
+          <h2 class="mb-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              Silahkan Buat Kata Sandi Baru
+          </h2>
+          <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
+              <div>
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukkan Email</label>
+                  <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+              </div>
+              <div>
+                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kata Sandi Baru</label>
+                  <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              <div>
+                  <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konfirmasi Kata Sandi</label>
+                  <input type="confirm-password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              
+              <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a href="/login">Reset passwod</a></button>
+          </form>
+      </div>
     </div>
 </body>
 
