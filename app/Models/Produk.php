@@ -14,12 +14,4 @@ class Produk extends Model
     protected $table = 'produk';
 
     protected $guarded = ['id_produk'];
-    protected $fillable = [
-        'name',
-        'category',
-        'image',
-        'stock',
-        'price',
-        'description'
-    ];
 }

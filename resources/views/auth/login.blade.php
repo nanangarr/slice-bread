@@ -10,6 +10,7 @@
 </head>
 
 <body class="">
+    @include('sweetalert::alert')
     <div class="flex items-center  justify-center min-h-screen gap-10 bg-gray-50 dark:bg-gray-900">
         <div class="font-bold justify-start">
             <span class="text-orange-500 text-8xl">S</span><span class="text-gray-800 text-6xl">lice</span><span
@@ -22,7 +23,8 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Silahkan Login Terlebih Dahulu
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="#">
+                <form class="space-y-4 md:space-y-6 needs-validation" novalidate action="/login" method="POST">
+                    @csrf
                     <div>
                         <label for="email"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukkan Email</label>
@@ -62,6 +64,20 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Check if there are errors in the session and display them
+    @if ($errors->any())
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ $errors->first() }}" // Display the first error message
+        });
+    @endif
+</script>
+
+    
 </body>
 
 </html>

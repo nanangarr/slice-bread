@@ -40,8 +40,20 @@
                 </button>
             </label>
 
-            <a href="/login"
-                class="bg-[#FFA500] text-black font-bold px-5 py-2 text-sm rounded-[27px] hover:bg-[#ed7d05]">Login</a>
+            @auth
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-[#FFA500] text-black font-bold px-5 py-2 text-sm rounded-[27px] hover:bg-[#ed7d05]">
+                        Logout
+                    </button>
+                </form>
+            @else
+                <a href="/login" class="bg-[#FFA500] text-black font-bold px-5 py-2 text-sm rounded-[27px] hover:bg-[#ed7d05]">
+                    Login
+                </a>
+                @endauth
+        
+             
 
             <!-- Mobile Menu Button -->
             <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
@@ -58,33 +70,42 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <ul class="mt-8 space-y-6">
-                    <li class="flex items-center justify-between">
-                        <img src="{{ asset('../../images/RotiAnggur.jpg') }}" alt="Product Image"
-                            class="w-16 h-16 object-cover rounded mr-4">
-                        <div class="flex-1">
-                            <p class="font-medium">Roti Anggur</p>
-                            <p class="text-gray-500">Rp5.000</p>
-                        </div>
-                        <button class="text-red-500 hover:text-red-700">Remove</button>
-                    </li>
-                    <li class="flex items-center justify-between">
-                        <img src="{{ asset('../../images/RotiAbon.jpg') }}" alt="Product Image"
-                            class="w-16 h-16 object-cover rounded mr-4">
-                        <div class="flex-1">
-                            <p class="font-medium">Roti Abon</p>
-                            <p class="text-gray-500">Rp10.000</p>
-                        </div>
-                        <button class="text-red-500 hover:text-red-700">Remove</button>
-                    </li>
+                <ul>
+                    @foreach ($keranjangItems as $item)
+                        <li class="flex items-center justify-between">
+                            <img src="{{ asset('images/produk/' . $item->produk->image) }}" alt="Product Image"
+                                class="w-16 h-16 object-cover rounded mr-4">
+                            <div class="flex-1">
+                                <p class="font-medium">{{ $item->produk->name }}</p>
+                                <p class="text-gray-500">Rp{{ number_format($item->produk->price, 0, ',', '.') }}</p>
+                                <p class="text-gray-500">Jumlah: {{ $item->quantity }}</p>
+                                <p class="text-gray-500">Total: Rp{{ number_format($item->produk->price * $item->quantity, 0, ',', '.') }}</p>
+                            </div>
+                            <button class="text-red-500 hover:text-red-700">Remove</button>
+                        </li>
+                    @endforeach
                 </ul>
+                
                 <div class="mt-8">
-                    <p class="text-base font-medium">Subtotal: Rp15.000</p>
-                    <button
-                        class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Checkout</button>
-                </div>
+                    <!-- Hitung subtotal secara manual di dalam view -->
+                    @php
+                        $subtotal = 0;
+                        foreach ($keranjangItems as $item) {
+                            $subtotal += $item->produk->price * $item->quantity;
+                        }
+                    @endphp
+                
+                    <p class="text-base font-medium">Subtotal: Rp{{ number_format($subtotal, 0, ',', '.') }}</p>
+                    <form action="/total" method="GET">
+                        <button type="submit" class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+                            Checkout
+                        </button>
+                    </form>
+                </div>  
             </div>
         </div>
+    </div>    
+    </div>    
     </div>
 
     @yield('content')

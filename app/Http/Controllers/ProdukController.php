@@ -20,4 +20,12 @@ class ProdukController extends Controller
             'produk' => $produk
         ]);
     }
+
+    public function show($id)
+{
+    $produk = Produk::findOrFail($id);
+    return view('menu.deskripsi', compact('produk'));
+}
+
+    
 }

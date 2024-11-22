@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Pelanggan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,26 +19,28 @@ class AuthController extends Controller
     }
 
     public function authenticate(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required',
-        'password' => 'required',
-    ]);
-
-    if (Auth::attempt($credentials)) {
-            // Regenerate session to prevent session fixation
+    {
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+    
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            // Store pelanggan ID in the session
+    
+            // Store Pelanggan ID in the session
             $request->session()->put('pelanggan_id', Auth::id());
-
+    
             Alert::success('Success', 'Login success !');
-            return redirect()->intended('/');
-            } else {
-                Alert::error('Error', 'Login failed !');
-                return redirect('/login')->withErrors(['email' => 'Email atau password salah.']);
-            }
+    
+            // Redirect ke halaman sebelumnya
+            return redirect()->back();
+        } else {
+            Alert::error('Error', 'Login failed !');
+            return redirect('/login')->withErrors(['email' => 'Email atau password salah.']);
         }
+    }
+    
 
     
 
@@ -53,8 +55,9 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:pelanggan',
+            'email' => 'required|unique:Pelanggan',
             'password' => 'required',
+            'confirm-password' => 'required|same:password'
         ]);
 
         $validated['password'] = Hash::make($request['password']);
@@ -62,7 +65,7 @@ class AuthController extends Controller
         Pelanggan::create($validated);
         Auth::logout();
 
-        Alert::success('Success', 'Register pelanggan has been successfully !');
+        Alert::success('Success', 'Register Pelanggan has been successfully !');
         return redirect('/login');
     }
 

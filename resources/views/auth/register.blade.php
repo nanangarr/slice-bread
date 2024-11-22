@@ -26,13 +26,14 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Silahkan Membuat Akun Anda
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="#">
+                <form class="space-y-4 md:space-y-6 needs-validation" novalidate action="/register" method="POST">
+                    @csrf
                     <div>
-                        <label for="nama"
+                        <label for="name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukkan Nama</label>
-                        <input type="nama" name="nama" id="nama"
+                        <input type="name" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="name@company.com" required="">
+                            placeholder="username" required="">
                     </div>
                     <div>
                         <label for="email"
@@ -52,7 +53,7 @@
                         <label for="confirm-password"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tulis Ulang Kata
                             Sandi</label>
-                        <input type="confirm-password" name="confirm-password" id="confirm-password"
+                        <input type="password" name="confirm-password" id="confirm-password"
                             placeholder="••••••••"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required="">
