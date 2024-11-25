@@ -23,6 +23,12 @@ class Pelanggan extends Authenticatable
 
     protected $guarded = ['id_pelanggan'];
 
+    // Tentukan relasi hasMany dengan Keranjang
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'id_pelanggan', 'id');
+    }
+        
     /**
      * The attributes that should be hidden for serialization.
      *

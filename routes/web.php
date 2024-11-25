@@ -6,6 +6,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IsidataController;
 use App\Http\Controllers\TotalController;
+use App\Http\Controllers\KonfirmasiController;
 
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -21,13 +22,13 @@ Route::resource('/menu', ProdukController::class);
 
 Route::resource('/keranjang', KeranjangController::class);
 
+
 Route::resource('/total', TotalController::class);
 
 Route::resource('/isidata', IsidataController::class);
 
-Route::get('/rekap', function () {
-    return view('menu.rekapSemua');
-});
+Route::resource('/konfirmasi', KonfirmasiController::class);
+
 Route::get('/cara', function () {
     return view('tampilan.cara');
 });

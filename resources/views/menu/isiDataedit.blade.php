@@ -1,8 +1,9 @@
 @extends('layouts.index')
 
 @Section('content')
-    <form class="flex flex-col lg:flex-row p-10 gap-10 needs-validation" novalidate action="/konfirmasi" method="POST">
+    <form class="flex flex-col lg:flex-row p-10 gap-10 needs-validation" novalidate action="/isidata/{{ $pesanan->id }}" method="POST">
         @csrf
+        @method('PUT') <!-- Tambahkan ini untuk metode PUT -->
         <div class="lg:w-2/3" id="accordion-multiple" data-accordion="open">
             <div class="mb-6">
                 <h2 id="accordion-collapse-heading-1">
@@ -27,7 +28,7 @@
                             <label for="Nama"
                                 class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Nama
                                 Lengkap</label>
-                            <input type="text" id="nama" name="nama"
+                            <input type="text" id="nama" name="nama" value="{{ old('nama', $pesanan->nama) }}"
                                 class="w-full h-14 border border-gray-300 rounded-lg px-4 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Nama Lengkap..." required />
                         </div>
@@ -152,23 +153,11 @@
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Order Summary</h3>
 
                 <div class="space-y-4">
-                    <!-- Subtotal Calculation in Blade -->
-                    @php
-                        $subtotal = 0;
-                    @endphp
-
-                    @foreach ($keranjangItems as $index => $item)
-                        @php
-                            $total = $item->produk->price * $item->quantity;
-                            $subtotal += $total;
-                        @endphp
-                    @endforeach
-
                     <div class="space-y-2">
                         <dl class="flex items-center justify-between gap-4">
                             <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Total Keranjang</dt>
                             <dd class="text-base font-medium text-gray-900 dark:text-white">
-                                Rp{{ number_format($subtotal, 0, ',', '.') }}
+                                Rp{{ number_format($pesanan->subtotal, 0, ',', '.') }}
                             </dd>
                         </dl>
 
@@ -181,11 +170,11 @@
                     <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-4 dark:border-gray-700">
                         <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
                         <dd class="text-base font-bold text-gray-900 dark:text-white">
-                            Rp{{ number_format($subtotal, 0, ',', '.') }}
+                            Rp{{ number_format($pesanan->subtotal, 0, ',', '.') }}
                         </dd>
                     </dl>
 
-                    <input type="hidden" name="subtotal" value="{{ $subtotal }}">
+                    <input type="hidden" name="subtotal" value="{{ $pesanan->subtotal }}">
 
                     <button type="submit"
                         class="w-full h-14 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 focus:outline-none mt-4 flex items-center justify-center">

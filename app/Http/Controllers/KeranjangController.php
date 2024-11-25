@@ -1,33 +1,36 @@
 <?php
+// app/Http/Controllers/KeranjangController.php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Keranjang;
 use App\Models\Produk;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
 {
-    
     public function index()
     {
+        // Ambil id_pelanggan dari auth user
         $id_pelanggan = Auth::id();
-        $keranjangItems = Keranjang::where('id_pelanggan', $id_pelanggan)->with('produk')->get();
+
+        // Gunakan relasi untuk ambil semua keranjang berdasarkan id_pelanggan
+        $keranjangItems = Keranjang::with('produk')  // load relasi produk
+                                    ->where('id_pelanggan', $id_pelanggan)
+                                    ->get();
 
         return view('layouts.index', compact('keranjangItems'));
     }
-    
-    
-
 
     public function store(Request $request)
     {
-        // Check if the user is logged in
+        // Cek apakah user sudah login
         if (!Auth::check()) {
             return redirect('/login')->withErrors(['login' => 'Anda harus login terlebih dahulu untuk menambahkan ke keranjang.']);
         }
 
-        // Validate the request data
+        // Validasi input
         $validated = $request->validate([
             'id_produk' => 'required|exists:produk,id_produk',
             'quantity' => 'required|integer|min:1',
@@ -39,27 +42,28 @@ class KeranjangController extends Controller
             'quantity.min' => 'Jumlah produk tidak valid.',
         ]);
 
+        // Ambil id_pelanggan dan data produk
         $id_pelanggan = Auth::id();
         $id_produk = $validated['id_produk'];
         $quantity = $validated['quantity'];
 
-        // Check if the product exists and if the quantity is within stock
+        // Cek apakah produk ada dan stok mencukupi
         $product = Produk::find($id_produk);
         if ($quantity > $product->stock) {
             return redirect()->back()->withErrors(['stock' => 'Stok produk tidak cukup.']);
         }
 
-        // Check if the product is already in the cart
+        // Cek apakah produk sudah ada di keranjang
         $keranjang = Keranjang::where('id_pelanggan', $id_pelanggan)
-            ->where('id_produk', $id_produk)
-            ->first();
+                            ->where('id_produk', $id_produk)
+                            ->first();
 
         if ($keranjang) {
-            // Update the quantity if the product already exists in the cart
+            // Update jumlah jika produk sudah ada di keranjang
             $keranjang->quantity += $quantity;
             $keranjang->save();
         } else {
-            // Create a new entry in the cart if the product is not in the cart
+            // Jika produk belum ada di keranjang, tambahkan
             Keranjang::create([
                 'id_pelanggan' => $id_pelanggan,
                 'id_produk' => $id_produk,
@@ -67,7 +71,7 @@ class KeranjangController extends Controller
             ]);
         }
 
-        // Redirect back with success message
+        // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
 }

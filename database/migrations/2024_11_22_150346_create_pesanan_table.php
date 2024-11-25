@@ -9,6 +9,7 @@ class CreatePesananTable extends Migration
     public function up()
     {
         Schema::create('pesanan', function (Blueprint $table) {
+            $table->integer('id_pelanggan')->unsigned();
             $table->id();
             $table->string('nama');
             $table->string('email');
@@ -20,6 +21,8 @@ class CreatePesananTable extends Migration
             $table->decimal('subtotal', 10, 2);
             $table->string('payment_method');
             $table->timestamps();
+            
+            $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')->onDelete('cascade');
         });
     }
 

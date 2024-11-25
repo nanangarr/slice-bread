@@ -12,17 +12,27 @@ class IsidataController extends Controller
     public function index()
     {
         $id_pelanggan = Auth::id();
-        // Ambil semua item keranjang berdasarkan id_pelanggan
+        
+        // Cek apakah ada data di tabel pesanan untuk pengguna ini
+        $pesananExists = Pesanan::where('id_pelanggan', $id_pelanggan)->exists();
+    
+        if ($pesananExists) {
+            // Ambil data pesanan dan keranjang yang ingin dikirim ke view rekapsemua
+            $keranjangItems = Keranjang::where('id_pelanggan', $id_pelanggan)->with('produk')->get();
+            $pesananItems = Pesanan::where('id_pelanggan', $id_pelanggan)->get();
+    
+            // Redirect ke menu.rekapsemua dengan data keranjang dan pesanan
+            return view('menu.rekapsemua', compact('keranjangItems', 'pesananItems'));
+        }
+    
+        // Jika tidak ada pesanan, tetap tampilkan halaman isidata
         $keranjangItems = Keranjang::where('id_pelanggan', $id_pelanggan)->with('produk')->get();
-
-
-        // Kirim data ke view isidata
-        return view('menu.isidata', compact('keranjangItems'));
+        return view('menu.isiData', compact('keranjangItems'));
     }
-
+    
     public function store(Request $request)
     {
-        // Validasi data
+        // Validasi data dengan pesan error khusus
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|email',
@@ -31,12 +41,23 @@ class IsidataController extends Controller
             'kecamatan' => 'required|string',
             'alamat' => 'required|string',
             'catatan' => 'nullable|string',
-            'payment_method' => 'required|string|in:bank-transfer,e-wallet,cod',
-            'subtotal' => 'required|numeric',  // pastikan subtotal juga diterima
+            'payment_method' => 'required|string',
+            'subtotal' => 'required|numeric',
+        ], [
+            'nama.required' => 'Nama belum diisi.',
+            'email.required' => 'Email belum diisi.',
+            'phone.required' => 'Nomor handphone belum diisi.',
+            'kabupaten.required' => 'Kabupaten belum diisi.',
+            'kecamatan.required' => 'Kecamatan belum diisi.',
+            'alamat.required' => 'Alamat belum diisi.',
+            'payment_method.required' => 'Metode pembayaran belum dipilih.',
+            'subtotal.required' => 'Subtotal belum diisi.',
         ]);
-
-        // Menyimpan pesanan ke database
-        $pesanan = Pesanan::create([
+    
+        // Proses penyimpanan pesanan
+        $id_pelanggan = Auth::id();
+        Pesanan::create([
+            'id_pelanggan' => $id_pelanggan,
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
@@ -45,12 +66,76 @@ class IsidataController extends Controller
             'alamat' => $validated['alamat'],
             'catatan' => $validated['catatan'],
             'payment_method' => $validated['payment_method'],
-            'subtotal' => $validated['subtotal'],  // Menyimpan subtotal pesanan
+            'subtotal' => $validated['subtotal'],
+        ]);
+    
+        // Redirect dengan pesan sukses
+        return redirect('/konfirmasi')->with('success', 'Pesanan berhasil disimpan.');
+    }
+
+    public function edit()
+    {
+        // Ambil pesanan berdasarkan id_pelanggan yang sama dengan id pengguna yang sedang login
+        $pesanan = Pesanan::where('id_pelanggan', Auth::id())->first();
+    
+        if (!$pesanan) {
+            return redirect()->back()->withErrors(['pesanan' => 'Pesanan tidak ditemukan atau Anda tidak memiliki akses.']);
+        }
+    
+        // Kirim data pesanan ke view edit, termasuk id_pesanan
+        return view('menu.isiDataedit', ['pesanan' => $pesanan]);
+    }
+    
+    
+    
+    // Fungsi untuk memperbarui data pesanan
+    public function update(Request $request, $id)
+    {
+        // Validasi data input dari form edit
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:20',
+            'kabupaten' => 'required|string',
+            'kecamatan' => 'required|string',
+            'alamat' => 'required|string',
+            'catatan' => 'nullable|string',
+            'payment_method' => 'required|string',
+            'subtotal' => 'required|numeric',
+        ], [
+            'nama.required' => 'Nama belum diisi.',
+            'email.required' => 'Email belum diisi.',
+            'phone.required' => 'Nomor handphone belum diisi.',
+            'kabupaten.required' => 'Kabupaten belum diisi.',
+            'kecamatan.required' => 'Kecamatan belum diisi.',
+            'alamat.required' => 'Alamat belum diisi.',
+            'payment_method.required' => 'Metode pembayaran belum dipilih.',
+            'subtotal.required' => 'Subtotal belum diisi.',
         ]);
 
-        // Anda bisa menambahkan logika lain seperti mengupdate status pesanan atau menghubungkan dengan keranjang
+        // Cari pesanan berdasarkan ID dan pastikan pesanan milik user yang sedang login
+        $pesanan = Pesanan::where('id', $id)->where('id_pelanggan', Auth::id())->first();
 
-        // Redirect atau tampilkan pesan sukses
-        return redirect()->back()->with('success', 'Pesanan telah dikonfirmasi.');
+        if (!$pesanan) {
+            return redirect()->back()->withErrors(['pesanan' => 'Pesanan tidak ditemukan atau Anda tidak memiliki akses.']);
+        }
+
+        // Update data pesanan
+        $pesanan->update([
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'kabupaten' => $validated['kabupaten'],
+            'kecamatan' => $validated['kecamatan'],
+            'alamat' => $validated['alamat'],
+            'catatan' => $validated['catatan'],
+            'payment_method' => $validated['payment_method'],
+            'subtotal' => $validated['subtotal'],
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect('/konfirmasi')->with('success', 'Pesanan berhasil diperbarui.');
     }
 }
+    
+

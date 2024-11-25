@@ -14,4 +14,9 @@ class Produk extends Model
     protected $table = 'produk';
 
     protected $guarded = ['id_produk'];
+
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'id_produk', 'id_produk');
+    }
 }

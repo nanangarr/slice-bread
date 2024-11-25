@@ -19,13 +19,15 @@
             <div class="p-6">
                 <h2 class="text-lg font-semibold mb-4">Detail Produk</h2>
                 <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-                        <div>
-                            <p class="font-medium">Roti Anggur</p>
-                            <p class="text-sm text-gray-500">50 x Rp5,000</p>
+                    @foreach($keranjangItems as $keranjang)
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+                            <div>
+                                <p class="font-medium">{{ $keranjang->produk->name }}</p>
+                                <p class="text-sm text-gray-500">{{ $keranjang->quantity }} x Rp{{ number_format($keranjang->produk->price, 0, ',', '.') }}</p>
+                            </div>
+                            <p class="font-medium">Rp{{ number_format($keranjang->produk->price * $keranjang->quantity, 0, ',', '.') }}</p>
                         </div>
-                        <p class="font-medium">Rp250,000</p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -37,31 +39,31 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <p class="text-sm text-gray-500">Nama Penerima</p>
-                        <p class="font-medium">Nanang Ardiansyah</p>
+                        <p class="font-medium">{{ $pesanan->nama }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Email</p>
-                        <p class="font-medium">nanang@example.com</p>
+                        <p class="font-medium">{{ $pesanan->email }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Nomor Telepon</p>
-                        <p class="font-medium">08123456789</p>
+                        <p class="font-medium">{{ $pesanan->phone }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Kabupaten</p>
-                        <p class="font-medium">Sragen</p>
+                        <p class="font-medium">{{ $pesanan->kabupaten }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Kecamatan</p>
-                        <p class="font-medium">Masaran</p>
+                        <p class="font-medium">{{ $pesanan->kecamatan }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Alamat Lengkap</p>
-                        <p class="font-medium">Sari, Pringanom, Masaran, Sragen</p>
+                        <p class="font-medium">{{ $pesanan->alamat }}</p>
                     </div>
                     <div class="col-span-2">
                         <p class="text-sm text-gray-500">Catatan</p>
-                        <p class="font-medium">Tolong dibungkus rapih</p>
+                        <p class="font-medium">{{ $pesanan->catatan ?? 'Tidak ada catatan' }}</p>
                     </div>
                 </div>
             </div>
@@ -74,11 +76,11 @@
                 <div class="space-y-2">
                     <div class="flex justify-between">
                         <p class="text-gray-500">Metode Pembayaran</p>
-                        <p class="font-medium">Bank Transfer</p>
+                        <p class="font-medium">{{ $pesanan->metode_pembayaran }}</p>
                     </div>
                     <div class="flex justify-between">
                         <p class="text-gray-500">Subtotal</p>
-                        <p class="font-medium">Rp250,000</p>
+                        <p class="font-medium">Rp{{ number_format($pesanan->subtotal, 0, ',', '.') }}</p>
                     </div>
                     <div class="flex justify-between">
                         <p class="text-gray-500">Diskon</p>
@@ -86,7 +88,7 @@
                     </div>
                     <div class="flex justify-between border-t border-gray-100 pt-2 mt-2">
                         <p class="font-semibold">Total</p>
-                        <p class="font-semibold">Rp250,000</p>
+                        <p class="font-semibold">Rp{{ number_format($pesanan->subtotal, 0, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
@@ -94,9 +96,9 @@
 
         <!-- Tombol Aksi -->
         <div class="flex justify-between items-center">
-            <router-link to="/menu" class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
+            <a href="{{ route('isidata.edit', $pesanan->id) }}" class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
                 Ubah Pesanan
-            </router-link>
+            </a>    
             <button class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
                 Konfirmasi & Bayar
             </button>
