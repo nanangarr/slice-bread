@@ -20,7 +20,14 @@ class Pesanan extends Model
         'kecamatan',
         'alamat',
         'catatan',
-        'subtotal',
+        'total_harga',
         'payment_method',
     ];
+
+    public function user(){
+        return $this->belongsTo(Pelanggan::class);
+    }
+    public function items(){
+        return $this->hasMany(DetailPesanan::class,'id_pesanan');
+    }
 }

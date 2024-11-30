@@ -22,6 +22,12 @@ Route::resource('/menu', ProdukController::class);
 
 Route::resource('/keranjang', KeranjangController::class);
 
+use App\Http\Controllers\PaymentController;
+
+Route::get('/payment/{id_pesanan}', [PaymentController::class, 'processPayment'])->name('payment.show');
+Route::get('/payment/create/{id_pesanan}', [PaymentController::class, 'createSnapToken'])->name('payment.create');
+Route::post('/payment/notification', [PaymentController::class, 'handleNotification']);
+
 
 Route::resource('/total', TotalController::class);
 

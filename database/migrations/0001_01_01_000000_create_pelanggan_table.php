@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pelanggan', function (Blueprint $table) {
-            $table->increments('id_pelanggan')->primary(); // tipe unsigned integer untuk id_pelanggan
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

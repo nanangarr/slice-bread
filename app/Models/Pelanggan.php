@@ -17,16 +17,18 @@ class Pelanggan extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $primaryKey = 'id_pelanggan';
 
     protected $table = 'pelanggan';
 
-    protected $guarded = ['id_pelanggan'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password'
+    ];
 
-    // Tentukan relasi hasMany dengan Keranjang
     public function keranjang()
     {
-        return $this->hasMany(Keranjang::class, 'id_pelanggan', 'id');
+        return $this->hasMany(Pesanan::class);
     }
         
     /**

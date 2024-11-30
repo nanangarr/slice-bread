@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @Section('content')
-    <form class="flex flex-col lg:flex-row p-10 gap-10 needs-validation" novalidate action="/konfirmasi" method="POST">
+    <form class="flex flex-col lg:flex-row p-10 gap-10 needs-validation" novalidate action="/isidata" method="POST">
         @csrf
         <div class="lg:w-2/3" id="accordion-multiple" data-accordion="open">
             <div class="mb-6">
@@ -152,23 +152,11 @@
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Order Summary</h3>
 
                 <div class="space-y-4">
-                    <!-- Subtotal Calculation in Blade -->
-                    @php
-                        $subtotal = 0;
-                    @endphp
-
-                    @foreach ($keranjangItems as $index => $item)
-                        @php
-                            $total = $item->produk->price * $item->quantity;
-                            $subtotal += $total;
-                        @endphp
-                    @endforeach
-
                     <div class="space-y-2">
                         <dl class="flex items-center justify-between gap-4">
                             <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Total Keranjang</dt>
                             <dd class="text-base font-medium text-gray-900 dark:text-white">
-                                Rp{{ number_format($subtotal, 0, ',', '.') }}
+                                Rp{{ number_format($total_harga, 0, ',', '.') }}
                             </dd>
                         </dl>
 
@@ -181,11 +169,11 @@
                     <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-4 dark:border-gray-700">
                         <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
                         <dd class="text-base font-bold text-gray-900 dark:text-white">
-                            Rp{{ number_format($subtotal, 0, ',', '.') }}
+                            Rp{{ number_format($total_harga, 0, ',', '.') }}
                         </dd>
                     </dl>
 
-                    <input type="hidden" name="subtotal" value="{{ $subtotal }}">
+                    <input type="hidden" name="total_harga" value="{{ $total_harga }}">
 
                     <button type="submit"
                         class="w-full h-14 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 focus:outline-none mt-4 flex items-center justify-center">

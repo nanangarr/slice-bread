@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Helpers\CartManagement;
 use RealRashid\SweetAlert\Facades\Alert;
-use Exception;
 
 class ProdukController extends Controller
 {
@@ -21,11 +21,30 @@ class ProdukController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function show($id)
-{
-    $produk = Produk::findOrFail($id);
-    return view('menu.deskripsi', compact('produk'));
-}
+    {
+        $produk = Produk::findOrFail($id);
+        return view('menu.deskripsi', compact('produk'));
+    }
 
-    
+    /**
+     * Destroy item from cart.
+     */
+    public function destroy($id)
+    {
+        try {
+            // Hapus produk dari keranjang menggunakan CartManagement
+            CartManagement::removeCartItems($id);
+
+            // Notifikasi keberhasilan menggunakan SweetAlert
+            Alert::success('Berhasil', 'Produk berhasil dihapus dari keranjang!');
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat menghapus produk dari keranjang: ' . $e->getMessage());
+        }
+
+        return redirect()->back();
+    }
 }

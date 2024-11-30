@@ -9,8 +9,8 @@ class CreatePesananTable extends Migration
     public function up()
     {
         Schema::create('pesanan', function (Blueprint $table) {
-            $table->integer('id_pelanggan')->unsigned();
             $table->id();
+            $table->foreignId('id_pelanggan')->constrained('pelanggan')->cascadeOnDelete();
             $table->string('nama');
             $table->string('email');
             $table->string('phone');
@@ -18,11 +18,11 @@ class CreatePesananTable extends Migration
             $table->string('kecamatan');
             $table->string('alamat');
             $table->text('catatan')->nullable();
-            $table->decimal('subtotal', 10, 2);
+            $table->decimal('total_harga', 10, 2);
             $table->string('payment_method');
+            $table->enum('status', ['pending','success', 'expired', 'canceled'])->default('pending');
             $table->timestamps();
             
-            $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')->onDelete('cascade');
         });
     }
 

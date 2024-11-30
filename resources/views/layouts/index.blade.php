@@ -71,37 +71,38 @@
                     </svg>
                 </button>
                 <ul>
-                    @foreach ($keranjangItems as $item)
-                        <li class="flex items-center justify-between">
-                            <img src="{{ asset('images/produk/' . $item->produk->image) }}" alt="Product Image"
+                    @forelse ($keranjangItems as $item)
+                        <li class="flex items-center justify-between mb-4">
+                            <img src="{{ asset('images/produk/' . $item['image']) }}" alt="Product Image"
                                 class="w-16 h-16 object-cover rounded mr-4">
                             <div class="flex-1">
-                                <p class="font-medium">{{ $item->produk->name }}</p>
-                                <p class="text-gray-500">Rp{{ number_format($item->produk->price, 0, ',', '.') }}</p>
-                                <p class="text-gray-500">Jumlah: {{ $item->quantity }}</p>
-                                <p class="text-gray-500">Total: Rp{{ number_format($item->produk->price * $item->quantity, 0, ',', '.') }}</p>
+                                <p class="font-medium">{{ $item['name'] }}</p>
+                                <p class="text-gray-500">Rp{{ number_format($item['unit_amount'], 0, ',', '.') }}</p>
+                                <p class="text-gray-500">Jumlah: {{ $item['quantity'] }}</p>
+                                <p class="text-gray-500">Total: Rp{{ number_format($item['total_amount'], 0, ',', '.') }}</p>
                             </div>
-                            <button class="text-red-500 hover:text-red-700">Remove</button>
+                            <form action="{{ route('menu.destroy', $item['id_produk']) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="text-red-500 hover:text-red-700">Remove</button>
+                            </form>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="text-center text-gray-500">Keranjang kosong</li>
+                    @endforelse
                 </ul>
                 
                 <div class="mt-8">
-                    <!-- Hitung subtotal secara manual di dalam view -->
                     @php
-                        $subtotal = 0;
-                        foreach ($keranjangItems as $item) {
-                            $subtotal += $item->produk->price * $item->quantity;
-                        }
                     @endphp
-                
                     <p class="text-base font-medium">Subtotal: Rp{{ number_format($subtotal, 0, ',', '.') }}</p>
                     <form action="/total" method="GET">
                         <button type="submit" class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
                             Checkout
                         </button>
                     </form>
-                </div>  
+                </div>
+                
             </div>
         </div>
     </div>    

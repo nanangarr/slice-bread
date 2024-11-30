@@ -45,18 +45,18 @@
         </div>
 
         <!-- Content -->
-        @foreach ($produk as $data)
-        <a href="{{ route('menu.show', $data->id_produk) }}" id="Menu" class="px-8 flex-1">
+        <div class="px-8 flex-1">
             <div class="grid grid-cols-4 gap-6">
-                <div class="menu-item">
-                    <img src="{{ asset('images/produk/' . $data->image) }}" class="w-full h-48 object-cover" />
-                    <h3 class="font-semibold">{{ $data->name }}</h3>
-                    <p class="text-yellow-500">Rp. {{ number_format($data->price, 0) }}</p>
-                </div>
+                @foreach ($produk as $data)
+                    <a href="{{ route('menu.show', $data->id) }}" id="Menu" class="menu-item">
+                        <img src="{{ asset('images/produk/' . $data->image) }}" class="w-full h-48 object-cover" />
+                        <h3 class="font-semibold">{{ $data->name }}</h3>
+                        <p class="text-yellow-500">Rp. {{ number_format($data->price, 0) }}</p>
+                    </a>
+                @endforeach
             </div>
-        </a>
+            </div>
     </section>
-    @endforeach
 
     <!-- Pagination -->
     <section aria-label="Page navigation example">

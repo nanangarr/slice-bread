@@ -9,14 +9,11 @@ class Produk extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_produk';
-
     protected $table = 'produk';
 
-    protected $guarded = ['id_produk'];
 
-    public function keranjang()
+    public function DetailPesanan()
     {
-        return $this->hasMany(Keranjang::class, 'id_produk', 'id_produk');
+        return $this->hasMany(DetailPesanan::class);
     }
 }

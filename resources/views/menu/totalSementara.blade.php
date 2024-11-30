@@ -17,35 +17,35 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @php
-                            $subtotal = 0;
-                        @endphp
                         @foreach ($keranjangItems as $index => $item)
-                            @php
-                                $total = $item->produk->price * $item->quantity;
-                                $subtotal += $total;
-                            @endphp
                             <tr class="text-gray-700 dark:text-black">
-                                <td class="px-6 py-4 text-center">{{ $index + 1 }}</td>
+                                <td class="px-6 py-4 text-center">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex justify-center">
-                                        <img class="h-32 w-32 object-cover rounded-lg" src="{{ asset('images/produk/' . $item->produk->image) }}" alt="{{ $item->produk->name }}" loading="lazy" />
+                                        <img class="h-32 w-32 object-cover rounded-lg" 
+                                        src="{{ asset('images/produk/' . $item['image']) }}" 
+                                        alt="Product Image" loading="lazy" />
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">{{ $item->produk->name }}</td>
-                                <td class="px-6 py-4">Rp{{ number_format($item->produk->price, 0, ',', '.') }}</td>
-                                <td class="px-6 py-4">{{ $item->quantity }}</td>
-                                <td class="px-6 py-4">Rp{{ number_format($total, 0, ',', '.') }}</td>
+                                <td class="px-6 py-4">{{ $item['name'] }}</td>
+                                <td class="px-6 py-4">Rp{{ number_format($item['unit_amount'], 0, ',', '.') }}</td>
+                                <td class="px-6 py-4">{{ $item['quantity'] }}</td>
+                                <td class="px-6 py-4">Rp{{ number_format($item['total_amount'], 0, ',', '.') }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex justify-center">
-                                        <a href="/delete" class="text-red-500 hover:text-red-700 transition-colors duration-200" aria-label="Delete" @click.prevent="confirmDelete()">
-                                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="3 6 5 6 21 6" />
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                                                <line x1="10" y1="11" x2="10" y2="17" />
-                                                <line x1="14" y1="11" x2="14" y2="17" />
-                                            </svg>
-                                        </a>
+                                        <form action="{{ route('menu.destroy', $item['id_produk']) }}" method="POST" class="inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 transition-colors duration-200" aria-label="Delete" onclick="return confirm('Are you sure you want to delete this item?')">
+                                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                    <line x1="10" y1="11" x2="10" y2="17" />
+                                                    <line x1="14" y1="11" x2="14" y2="17" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                        
                                     </div>
                                 </td>
                             </tr>
@@ -77,7 +77,7 @@
                         <dd class="text-base font-bold text-gray-900 dark:text-white">Rp{{ number_format($subtotal, 0, ',', '.') }}</dd>
                     </dl>
                 </div>
-                <a href="/konfirmasi"
+                <a href="/isidata"
                     class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed
                     to Checkout</a>
             </div>
