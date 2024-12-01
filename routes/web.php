@@ -38,6 +38,9 @@ Route::resource('/konfirmasi', KonfirmasiController::class);
 Route::get('/cara', function () {
     return view('tampilan.cara');
 });
+Route::get('/riwayat', function () {
+    return view('tampilan.riwayat');
+});
 Route::get('/kontak', function () {
     return view('tampilan.kontak');
 });

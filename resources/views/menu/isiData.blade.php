@@ -175,7 +175,7 @@
 
                     <input type="hidden" name="total_harga" value="{{ $total_harga }}">
 
-                    <button type="submit"
+                    <button href="/konfimasi" type="submit"
                         class="w-full h-14 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 focus:outline-none mt-4 flex items-center justify-center">
                         Konfirmasi Pesanan
                     </button>
