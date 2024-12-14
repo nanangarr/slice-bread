@@ -7,6 +7,25 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IsidataController;
 use App\Http\Controllers\TotalController;
 use App\Http\Controllers\KonfirmasiController;
+use App\Http\Controllers\PaymentController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+// Tambahkan route verifikasi email
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])
+    ->middleware(['signed'])
+    ->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'Tautan verifikasi telah dikirim ulang');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -22,12 +41,9 @@ Route::resource('/menu', ProdukController::class);
 
 Route::resource('/keranjang', KeranjangController::class);
 
-use App\Http\Controllers\PaymentController;
-
 Route::get('/payment/{id_pesanan}', [PaymentController::class, 'processPayment'])->name('payment.show');
 Route::get('/payment/create/{id_pesanan}', [PaymentController::class, 'createSnapToken'])->name('payment.create');
 Route::post('/payment/notification', [PaymentController::class, 'handleNotification']);
-
 
 Route::resource('/total', TotalController::class);
 
